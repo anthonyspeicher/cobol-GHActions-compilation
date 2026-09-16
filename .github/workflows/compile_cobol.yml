@@ -1,0 +1,7 @@
+---
+
+name: Compile Cobol
+
+on:
+  release:
+    

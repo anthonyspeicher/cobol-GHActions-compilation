@@ -1,0 +1,30 @@
+---
+
+name: Make Release
+
+on:
+  push:
+    tags:
+      # change based on pipeline
+      - 'v*'
+
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Create release
+        uses: comnoco/create-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        with:
+          tag-name: ${{ github.ref }}
+          release-name: ${{ github.ref }}
+          body: |
+            changes
+            - First Change
+            - Second Change
