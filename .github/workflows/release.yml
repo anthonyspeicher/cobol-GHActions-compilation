@@ -18,16 +18,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Create release
-        id: create_release
-        uses: comnoco/create-release-action@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: |
-            changes
-            - First Change
-            - Second Change
+      - name: Create Github release
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+        run: |
+          gh release create "${{ github.ref_name }}" \
+          --title "${{ github.ref_name }}" \
+          --notes "Changes
+          - First Change
+          - Second Change"
