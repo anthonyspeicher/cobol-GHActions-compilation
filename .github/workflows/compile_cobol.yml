@@ -2,6 +2,33 @@
 
 name: Compile Cobol
 
+
 on:
   release:
-    
+
+
+jobs:
+  build:
+    name: Compile Cobol
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Cobol
+        run: |
+          sudo apt update
+          sudo apt install gnucobol14 -y
+
+      - name: Compile code
+        # look at Cobol implementation - do we need to push one file at a time or many?
+        # use directories for separation?
+        run: |
+          mkdir -p build
+          cobc -x -o build/program *.cob
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cobol-build
+          path: build/
