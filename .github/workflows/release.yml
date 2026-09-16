@@ -8,6 +8,8 @@ on:
       # change based on pipeline
       - 'v*'
 
+permissions:
+  contents: write
 
 jobs:
   build:
