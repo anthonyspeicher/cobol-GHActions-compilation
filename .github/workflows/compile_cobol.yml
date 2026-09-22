@@ -19,7 +19,7 @@ jobs:
       - name: Download Cobol
         run: |
           sudo apt update
-          sudo apt install gnucobol14 -y
+          sudo apt install gnucobol4 -y
 
       - name: Compile code
         # look at Cobol implementation - do we need to push one file at a time or many?
