@@ -5,7 +5,7 @@ name: Compile Cobol
 
 on:
   release:
-    types: [ published ]
+    types: [ released ]
 
 
 jobs:
