@@ -4,6 +4,7 @@ name: Compile Cobol
 
 
 on:
+  workflow_call:
   release:
     types: [ released ]
 
@@ -33,3 +34,8 @@ jobs:
         with:
           name: cobol-build
           path: build/
+
+      - name: Attach binary to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "${{ github.ref_name }}" build/program
